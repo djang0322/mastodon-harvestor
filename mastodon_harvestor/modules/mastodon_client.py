@@ -17,12 +17,17 @@ class MastodonClient():
         )
         self._stream_listner = MastodonStreamListener(self)
         self.db_client = db_client
+        self.stream = None
         self._tooth_docs = []
 
     def start_public_streaming(self) -> None:
         print('Public Streaming Started')
-        self._mastodon.stream_public(self._stream_listner)
+        self.stream = self._mastodon.stream_public(self._stream_listner)
     
+    def close_stream(self) -> None:
+        print('Closed streaming')
+        self.stream.close()
+
     def start_hashtag_streaming(self) -> None:
         for tag in TAGS:
             print(f'HashTag Streaming Started with {tag}')

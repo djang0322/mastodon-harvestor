@@ -6,9 +6,18 @@ from modules.constants import *
 class CouchDBClient():
 
     def __init__(self, username, password, url):
-        self.authenticator = CouchDbSessionAuthenticator(username, password)
-        self.client = CloudantV1(authenticator=self.authenticator)
-        self.client.set_service_url(url)
+        self.username = username
+        self.password = password
+        self.url = url
+    
+    def connect(self) -> bool:
+        try:
+            self.authenticator = CouchDbSessionAuthenticator(self.username, self.password)
+            self.client = CloudantV1(authenticator=self.authenticator)
+            self.client.set_service_url(self.url)
+            return True
+        except:
+            return False
 
     def get_session(self) -> dict:
         return self.client.get_session_information().get_result()
