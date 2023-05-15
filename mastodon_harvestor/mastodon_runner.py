@@ -39,9 +39,10 @@ def main() -> None:
         exit(0)
     elif len(sys.argv) >= 2:
         index = int(sys.argv[1])
-        
-    while True:
+
+    while trial < 10:
         try:
+            mastodon_clinet = None
             db_client = get_couchDB_client()
             connected = connect_to_couchDB(db_client)
             if (connected and db_client.create_database(TOOTH_DATABASE)):
@@ -49,7 +50,9 @@ def main() -> None:
                 mastodon_client.start_public_streaming()
         except Exception as e:
             print(f"Accounted Error {trial} times: {e}")
-            mastodon_client.close_stream()
+            if mastodon_clinet != None:
+                mastodon_client.close_stream()
+            index += 1
             trial += 1
 
 if __name__ == '__main__':
