@@ -18,7 +18,8 @@ TAGS = [
     'cancer'
 ]
 SEARCH_LIMIT = 300
-DB_URL='http://127.0.0.1:5984/'
+# DB_URL='http://127.0.0.1:5984/'
+DB_URL='http://172.26.134.93:5984/'
 DB_USERNAME='admin'
 DB_PASSWORD='admin'
 TOOTH_DATABASE='mastodon_tooth'
