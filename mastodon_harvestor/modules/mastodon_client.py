@@ -48,7 +48,7 @@ class MastodonClient():
             self._add_tooth_to_database(tooth)
 
     def _valid_status(self, status) -> bool:
-        if (status['language'] != 'en' or len(status['tags']) == 0):
+        if (len(status['tags']) == 0):
             return False
         return True
 
