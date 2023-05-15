@@ -15,8 +15,10 @@ class CouchDBClient():
             self.authenticator = CouchDbSessionAuthenticator(self.username, self.password)
             self.client = CloudantV1(authenticator=self.authenticator)
             self.client.set_service_url(self.url)
+            print("Connected to DB")
             return True
         except:
+            print("Failed connection to DB")
             return False
 
     def get_session(self) -> dict:
