@@ -27,6 +27,16 @@ class CouchDBClient():
     def get_all_database(self) -> list:
         return self.client.get_all_dbs().get_result()
     
+    def get_all_docs_from_database(self, database) -> list:
+        return self.client.post_all_docs(db=database).get_result()
+    
+    def get_document(self, database, id):
+        return self.client.get_document(db=database, doc_id=id).get_result()
+    
+    def update_document(self, database, new_doc):
+        print("update called")
+        return self.client.post_document(db=database, document=new_doc).get_result()
+    
     def get_client(self) -> CloudantV1:
         return self.client
     
