@@ -12,6 +12,9 @@ class Tooth():
     def __str__(self) -> str:
         return str(self.__class__) + ": " + str(self.__dict__)
     
+    def get_id(self):
+        return self._id
+    
     def has_tags(self) -> bool:
         return len(self._tags) > 0
     
