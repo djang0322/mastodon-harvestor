@@ -1,8 +1,17 @@
+import os
+
 from ibmcloudant.cloudant_v1 import Document
 from modules.mastodon_client import MastodonClient
 from modules.db_client import CouchDBClient
-from modules.constants import *
-import os
+from modules.constants import (
+    DB_USERNAME,
+    DB_PASSWORD,
+    DB_URL,
+    MASTODON_SITES,
+    MAX_ATTEMPT,
+    TOOTH_DATABASE,
+    TOKEN_DATABASE
+)
 
 def get_couchDB_client() -> CouchDBClient:
     db_client = CouchDBClient(DB_USERNAME, DB_PASSWORD, DB_URL)
