@@ -1,0 +1,45 @@
+version: "3.8"
+
+services:
+  couchdb:
+    image: couchdb:latest
+    container_name: couchdb
+    restart: unless-stopped
+    ports:
+      - "5984:5984"
+    environment:
+      COUCHDB_USER: admin
+      COUCHDB_PASSWORD: admin
+    volumes:
+      - couchdb_data:/opt/couchdb/data
+    networks:
+      - mastodon_harvestors_network
+
+  mastodon-harvestor:
+    image: djang9303/mastodon-harvestor:1.5
+    deploy:
+      replicas: 3
+      restart_policy:
+        condition: on-failure
+      placement:
+        constraints:
+          - node.role == worker
+    environment:
+      MASTODON_ACCESS_TOKEN_SOCIAL: secret
+      MASTODON_ACCESS_TOKEN_AU: secret
+      MASTODON_ACCESS_TOKEN_CLOUD: secret
+      MASTODON_ACCESS_TOKEN_WORLD: secret
+      MASTODON_ACCESS_TOKEN_UK: secret
+      DB_URL: "http://couchdb:5984/"
+      DB_USERNAME: "admin"
+      DB_PASSWORD: "admin"
+    depends_on:
+      - couchdb
+    networks:
+      - mastodon_harvestors_network
+
+volumes:
+  couchdb_data:
+
+networks:
+  mastodon_harvestors_network:
