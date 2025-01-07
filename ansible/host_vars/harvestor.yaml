@@ -2,15 +2,15 @@ container_name: mastodon-harvestor
 image_name: djang9303/mastodon-harvestor
 image_tag: 1.5
 
-token_social: Hjv8XHIQMo042o7nTXbWC15WkUtWUd9bekh6s5lz-L0
-token_au: pwvGgbL4Kapd2kYQGTWd20ZqcHP0lTqR9ioyDNlihPo
-token_cloud: B0T98uen8Mt4I-xygsG_CVX3e54m1DFGJMUdpjRXZq4
-token_world: bGflW2L837cKzBEb36_8Hl6SuGQ0d6AaWgrsrx7ij3I
-token_uk: Ep6V4XkMGxFtokagetZAffCotR9ZVk-7Nffto-Oio3k
+token_social: secret
+token_au: secret
+token_cloud: secret
+token_world: secret
+token_uk: secret
 
 db_url: "http://172.26.134.93:5984/"
 db_username: "admin"
 db_password: "admin"
 
-swarm_manager_ip: 172.26.133.60
-remote_addr: "172.26.133.60:2377"
+swarm_manager_ip: 172.26.135.35
+remote_addr: "172.26.135.35:2377"
