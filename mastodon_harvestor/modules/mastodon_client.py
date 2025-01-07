@@ -1,11 +1,14 @@
-from mastodon import Mastodon
-from ibmcloudant.cloudant_v1 import BulkDocs
-from modules.mastodon_stream_listenr import MastodonStreamListener
-from modules.mastodon_tooth import Tooth
-from modules.constants import *
-from bs4 import BeautifulSoup
 import re
 import emoji
+
+from mastodon import Mastodon
+from ibmcloudant.cloudant_v1 import BulkDocs
+from bs4 import BeautifulSoup
+
+from modules.mastodon_stream_listenr import MastodonStreamListener
+from modules.mastodon_tooth import Tooth
+from modules.constants import SEARCH_LIMIT, TOOTH_DATABASE
+
 
 class MastodonClient():
 
@@ -27,19 +30,6 @@ class MastodonClient():
     def close_stream(self) -> None:
         print('Closed streaming')
         self.stream.close()
-
-    def start_hashtag_streaming(self) -> None:
-        for tag in TAGS:
-            print(f'HashTag Streaming Started with {tag}')
-            self._mastodon.stream_hashtag(tag, self._stream_listner)
-
-    def get_past_tooth(self) -> None:
-        for tag in TAGS:
-            # query = f'#{tag}'
-            result = self._mastodon.timeline_hashtag(tag, limit=SEARCH_LIMIT)
-            # print(result)
-            print(len(result))
-            # break
 
     def on_update_callback(self, status) -> None:
         # Add status to database which has tags and written in english
@@ -74,7 +64,7 @@ class MastodonClient():
         mention_pattern = re.compile(r"@[\w]+")
         string = mention_pattern.sub("", string)
 
-        # remove #
+        # remove "#""
         string = string.replace('#', '')
 
         return string

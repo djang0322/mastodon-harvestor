@@ -1,3 +1,5 @@
+from typing import Any
+
 from mastodon import StreamListener
 
 class MastodonStreamListener(StreamListener):
@@ -6,8 +8,8 @@ class MastodonStreamListener(StreamListener):
         super().__init__()
         self.client = client
 
-    def on_update(self, status):
+    def on_update(self, status) -> None:
         self.client.on_update_callback(status)
 
-    def on_abort(self, err):
+    def on_abort(self, err) -> Any:
         return super().on_abort(err)
