@@ -40,8 +40,7 @@ The Mastodon Harvester is a cloud-based application designed for harvesting and 
 
 Clone this repository to your local machine:
 ```bash
-git clone <<url>>
-cd your-repo
+git clone https://github.com/djang0322/mastodon-harvestor.git
 ```
 
 ### 2. Obtain Mastodon API Access Tokens
